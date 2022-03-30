@@ -9,12 +9,12 @@ There has to be a better way to make custom employee fields on a company basis.
 > Note: You do not need to support multiple data types for this task. The values can be entered, stored, and displayed as text.
 
 ## Already Built
-[x] Coding Challenge 1 should already be complete. If you haven't already completed it, you will have to do that as part of this coding challenge.
+- [x] Coding Challenge 1 should already be complete. If you haven't already completed it, you will have to do that as part of this coding challenge.
 
 ## Requirements
-[] Somewhere in the UI, a user should be able to add a new custom empoyee field for a particular company.
-[] Somewhere in the UI, a user should be able to populate the values for the fields for a given employee in that company.
-[] Display any new custom employee field next to each employee on the single company page.
+- [ ] Somewhere in the UI, a user should be able to add a new custom empoyee field for a particular company.
+- [ ] Somewhere in the UI, a user should be able to populate the values for the fields for a given employee in that company.
+- [ ] Display any new custom employee field next to each employee on the single company page.
 
 ## Getting Started
 Refer to `README.md` to get the app up and running
