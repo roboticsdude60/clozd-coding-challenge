@@ -1,11 +1,11 @@
 # Getting Started
 ## Installing Dependencies
+Install Server Dependencies 
 ```
-// server dependencies
 npm install
 ```
+Install Client Dependencies
 ```
-// client dependencies
 cd client/
 npm install
 ```
@@ -17,7 +17,9 @@ npm run dev
 ```
 
 # Database
-This coding challenge makes use of SQLite and stores it in a file locally.
+## Technologies
+* SQLite
+> The SQLite database is stored in a file locally.
 
 ## Seeding Database
 The repository comes with the database pre-seeded. If you need to reset the database to its original state, run the following:
@@ -28,7 +30,7 @@ npm run seed
 ## Running SQL Queries on the Database
 This repository uses the `sqlite3` npm package. In `/db`, we already connect to the database file for you. Simply import `/db/index.js` to the file in which you need it and start running queries.
 
-[https://www.npmjs.com/package/sqlite3](For more information on how to use `sqlite3`, read the docs.)
+For more information on how to use `sqlite3`, [read the docs here.](https://www.npmjs.com/package/sqlite3)
 
 ## Changing the Database Structure
 If needed for your coding challenge, you may change the structure of the database. One way you could accomplish this is by:

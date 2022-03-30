@@ -15,3 +15,6 @@ There has to be a better way to make custom employee fields on a company basis.
 [] Somewhere in the UI, a user should be able to add a new custom empoyee field for a particular company.
 [] Somewhere in the UI, a user should be able to populate the values for the fields for a given employee in that company.
 [] Display any new custom employee field next to each employee on the single company page.
+
+## Getting Started
+Refer to `README.md` to get the app up and running
