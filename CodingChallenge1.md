@@ -16,5 +16,9 @@ Your users will want to see some very particular things, but other than those pa
 - [ ] Breadcrumbs should be updated to reflect the new route added.
 - [ ] Somewhere in the UI, the application should have the ability to edit the name of a company and save it to the database.
 
+### Design
+- UI does not need to be a work of art, but we expect any new UI to follow a similar design style to what already exists.
+- UX will be evaluated. Specifically, we want to see if added elements are easy to use and make sense where they are placed.
+
 ## Getting Started
 Refer to `README.md` to get the app up and running
