@@ -2,8 +2,6 @@
 ## Scenario
 You are developing an application that will show company and employee details. You have all the data you need, but the data still needs to be retrieved and displayed for your users. 
 
-Your users will want to see some very particular things, but other than those particular things, you will have liberty to add whatever you see fit.
-
 ## Already Built
 - [x] A table of all companies available at route `/` or `/companies`
 

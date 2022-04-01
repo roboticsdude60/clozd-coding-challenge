@@ -1,10 +1,10 @@
 # Coding Challenge 2
 ## Scenario
-Now, users have realized that every company is different. They each care about different employee information. For example, some companies want to store "birth date" for each employee while others want to store "average daily weight of snacks consumed" for each employee.
+Now, users have realized that every company is different. They each care about different employee information. For example, one company migh care about "number of trips to Canada" for each employee while another only cares about "vacation days" for each employee.
 
-This will be tricky with the current data structure because each employee field (name, avatar, title, country) are each a separate column. If company 1 wants to store "number of trips to Canada" and company 2 wants to store "has broken a bone?", that would eventually lead to a lot of different columns that are mostly empty.
+This will be tricky with the current data structure because each employee field (name, avatar, title, country) are each a separate column. If company A wants to store "hire date" and company B only cares about "birth date", that would eventually lead to a lot of different columns that are mostly empty.
 
-There has to be a better way to make custom employee fields on a company basis.
+How can we tie these "metadata" columns to a specific company and the "metadata" values to a specific employe? There has to be a better way to make custom employee fields on a company basis.
 
 ## Already Built
 - [x] Coding Challenge 1 should already be complete. If you haven't already completed it, you will have to do that as part of this coding challenge.
