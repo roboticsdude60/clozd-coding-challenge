@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Companies.css';
 
@@ -18,7 +18,7 @@ const TableRow = ({
 	</div>
 );
 
-const Companies = () => {
+const CompanyDetail = () => {
 	const [companies, setCompanies] = useState([]);
 	let navigate = useNavigate();
 
@@ -35,26 +35,8 @@ const Companies = () => {
 	}, []);
 
 	return (
-		<div className="companies">
-			<TableRow
-				className="companies_header"
-				name="Name"
-				segment="Segment"
-				region="Region"
-				industry="Industry"
-			/>
-			{companies.map(company => (
-				<TableRow
-					key={company.id}
-					className="companies_row"
-					onClick={() => 
-						navigate('/companies/' + company.id)
-					}
-					{...company}
-				/>
-			))}
-		</div>
+		<h1>Testing</h1>
 	);
 }
 
-export default Companies;
+export default CompanyDetail;
