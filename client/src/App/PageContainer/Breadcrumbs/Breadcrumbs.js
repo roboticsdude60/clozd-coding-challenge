@@ -5,19 +5,7 @@ import './Breadcrumbs.css';
 const Breadcrumbs = () => {
 	const location = useLocation();
 
-	const crumbs = [];
-
-	switch (location.pathname) {
-		case '/':
-		case '/companies':
-			crumbs.push({
-				name: 'Companies',
-				destination: '/companies',
-			});
-			break;
-		default:
-			break;
-	}
+	const crumbs = BreadcrumbsFromPath(location.pathname);
 
 	return (
 		<div className="breadcrumbs">
@@ -30,6 +18,29 @@ const Breadcrumbs = () => {
 			))}
 		</div>
 	);
+}
+
+const BreadcrumbsFromPath = (path) => {
+	if (path === '/') {
+		return [{
+			name: 'companies',
+			destination: '/companies'
+		}];
+	}
+
+	let partialPath = '';
+	let segments = path.split('/');
+	segments.shift();
+
+	return segments.map((segment, i) => {
+		partialPath += '/' + segment;
+
+		return {
+			name: segment,
+			destination: partialPath
+		}
+	});
+
 }
 
 export default Breadcrumbs;
