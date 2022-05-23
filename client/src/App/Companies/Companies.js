@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { Fragment, useEffect, useState } from 'react';
+import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import './Companies.css';
 
 const TableRow = ({
@@ -21,6 +21,7 @@ const TableRow = ({
 const Companies = () => {
 	const [companies, setCompanies] = useState([]);
 	let navigate = useNavigate();
+	let { companyId } = useParams();
 
 	// fetch the company data from the backend
 	useEffect(() => {
@@ -34,16 +35,26 @@ const Companies = () => {
 		getCompanies();
 	}, []);
 
+	let filterFun = ({id}, i) => {
+		if (companyId) {
+			return id == companyId;
+		} else {
+			return true;
+		}
+	};
+
 	return (
+		<Fragment >
 		<div className="companies">
-			<TableRow
-				className="companies_header"
-				name="Name"
-				segment="Segment"
-				region="Region"
-				industry="Industry"
-			/>
-			{companies.map(company => (
+			<Link to={'/companies'} >
+				<TableRow 
+					className="companies_header"
+					name="Companies"
+					segment="Segment"
+					region="Region"
+					industry="Industry" />
+			</Link>
+			{companies.filter(filterFun).map(company => (
 				<TableRow
 					key={company.id}
 					className="companies_row"
@@ -54,6 +65,8 @@ const Companies = () => {
 				/>
 			))}
 		</div>
+		<Outlet />
+		</Fragment>
 	);
 }
 
