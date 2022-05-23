@@ -3,6 +3,8 @@ const app = express();
 const port = 5000;
 const db = require('./db');
 
+app.use(express.json());
+
 /**
  * GET /companies
  * Fetches all companies in the database
@@ -12,6 +14,36 @@ app.get('/companies', (req, res) => {
 		SELECT * FROM companies;
 	`;
 	const params = [];
+
+	db.all(sql, params, (err, rows) => {
+		if (err) {
+			res.status(400).json({
+				error: err.message
+			});
+			return;
+		}
+		res.json({
+			message: 'success',
+			data: rows
+		})
+	});
+});
+
+/**
+ * PUT /companies/rename/:companyId
+ * renames given company in the database
+ */
+ app.put('/companies/rename/:companyId', (req, res) => {
+	const sql = `
+	UPDATE companies
+	SET name=?
+	WHERE companies.id=?;
+	`;
+	companyID = req.params.companyId;
+	newName = req.body.newName;
+	// console.log(req.body);
+
+	const params = [newName, companyID];
 
 	db.all(sql, params, (err, rows) => {
 		if (err) {
@@ -63,8 +95,8 @@ app.get('/companies/:companyId', (req, res) => {
 });
 
 /**
- * GET /companies/:companyId
- * Fetches all the departments of said company from the database
+ * GET /companies/:companyId/departments/:departmentId
+ * Fetches all the employees of said department from the database
  */
  app.get('/companies/:companyId/departments/:departmentId', (req, res) => {
 	const sql = `

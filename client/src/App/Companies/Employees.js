@@ -9,8 +9,8 @@ const TableRow = ({
 	elements
 }) => (
 	<div className={className} onClick={onClick}>
-		{image ? <div className='departments_row-cell'><img height={50} src={image.split('?')[0]} /></div>: ''}
-		{elements.map(e => <div key={e} className="departments_row-cell">{e}</div>)}
+		{image ? <div className='row-cell'><img alt='employee avatar' height={50} src={image.split('?')[0]} /></div>: ''}
+		{elements.map(e => <div key={e} className="row-cell">{e}</div>)}
 	</div>
 );
 
@@ -25,29 +25,28 @@ const Departments = () => {
 			const response = await fetch('/companies/' + companyId + '/departments/' + departmentId);
 			const { message, data } = await response.json();
 			if (message === 'success') {
-				console.log(data);
 				setEmployees(data);
 			}
 		}
 		getEmployees();
-	}, [departmentId]);
+	}, [departmentId, companyId]);
 
 
 	return (
 		<Fragment >
 		<div className="departments">
 			<TableRow
-				className="departments_header"
+				className="table_header"
 				key={'a'}
 				elements={['Employees', 'Name', 'Title', 'Country']}
 			/>
 			{employees.map(({avatar, name, title, country, id}) => (
-					<TableRow
-						key={id}
-						className="departments_row"
-						image={avatar}
-						elements={[name, title, country]}
-					/>
+				<TableRow
+					key={id}
+					className="table_row"
+					image={avatar}
+					elements={[name, title, country]}
+				/>
 			))}
 		</div>
 		<Outlet />

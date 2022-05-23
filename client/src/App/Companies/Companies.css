@@ -4,7 +4,7 @@
 	margin-bottom: 2em;
 }
 
-.companies_header, .departments_header, .employees_header {
+.table_header {
 	display: flex;
 	flex-direction: row;
 	padding: 8px 16px;
@@ -16,7 +16,7 @@
 	top: 0;
 }
 
-.companies_row, .departments_row, .employees_row {
+.table_row {
 	display: flex;
 	flex-direction: row;
 	border-top: 1px solid rgba(37,38,43, 0.3);
@@ -26,15 +26,15 @@
 	cursor: pointer;
 }
 
-.companies_row:hover, .departments_row:hover, .employees_row:hover {
+.table_row:hover {
 	background-color: #FAFAFA;
 
 }
 
-.companies_row ~ .companies_row, .departments_row ~ .departments_row {
+.table_row ~ .table_row {
 	border-top: none;
 }
 
-.companies_row-cell, .departments_row-cell{
+.row-cell {
 	flex: 1;
 }

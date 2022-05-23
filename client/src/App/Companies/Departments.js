@@ -8,7 +8,7 @@ const TableRow = ({
 	elements
 }) => (
 	<div className={className} onClick={onClick}>
-		{elements.map((e, i) => <div key={i + 1} className="departments_row-cell">{e}</div>)}
+		{elements.map((e, i) => <div key={i + 1} className="row-cell">{e}</div>)}
 	</div>
 );
 
@@ -24,7 +24,6 @@ const Departments = () => {
 			const response = await fetch('/companies/' + companyId);
 			const { message, data } = await response.json();
 			if (message === 'success') {
-				console.log(data);
 				setDepartments(data);
 			}
 		}
@@ -43,13 +42,13 @@ const Departments = () => {
 		<Fragment >
 		<div className="departments">
 			<Link to={'/companies/' + companyId}>
-				<TableRow className="departments_header" key={'a'}
+				<TableRow className="table_header" key={'a'}
 					elements={['Departments', 'Department ID', 'Number of Employees']} />
 			</Link>
 			{departments.filter(filterFun).map(({department_name, department_id, employee_count}) => (
 					<TableRow
 						key={department_id}
-						className="departments_row"
+						className="table_row"
 						onClick={() => 
 							navigate('/companies/' + companyId + "/departments/" + department_id)
 						}

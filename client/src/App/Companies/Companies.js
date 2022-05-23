@@ -5,16 +5,10 @@ import './Companies.css';
 const TableRow = ({
 	className,
 	onClick,
-	name,
-	segment,
-	region,
-	industry,
+	elements
 }) => (
 	<div className={className} onClick={onClick}>
-		<div className="companies_row-cell">{name}</div>
-		<div className="companies_row-cell">{segment}</div>
-		<div className="companies_row-cell">{region}</div>
-		<div className="companies_row-cell">{industry}</div>
+		{elements.map((e, i) => <div key={i + 1} className='row-cell'>{e}</div>)}
 	</div>
 );
 
@@ -25,14 +19,7 @@ const Companies = () => {
 
 	// fetch the company data from the backend
 	useEffect(() => {
-		async function getCompanies() {
-			const response = await fetch('/companies');
-			const { message, data } = await response.json();
-			if (message === 'success') {
-				setCompanies(data);
-			}
-		}
-		getCompanies();
+		getCompanies(setCompanies);
 	}, []);
 
 	let filterFun = ({id}, i) => {
@@ -45,29 +32,64 @@ const Companies = () => {
 
 	return (
 		<Fragment >
-		<div className="companies">
+		<div className='companies'>
 			<Link to={'/companies'} >
 				<TableRow 
-					className="companies_header"
-					name="Companies"
-					segment="Segment"
-					region="Region"
-					industry="Industry" />
+					className='table_header'
+					elements={['Companies', 'Segment', 'Region', 'Industry']} />
 			</Link>
 			{companies.filter(filterFun).map(company => (
 				<TableRow
 					key={company.id}
-					className="companies_row"
+					className='table_row'
 					onClick={() => 
 						navigate('/companies/' + company.id)
 					}
-					{...company}
+					elements={[
+						<span><button onClick={(event) => {
+							event.stopPropagation();
+							editCompanyName(company, setCompanies);
+						}}>✏️</button> {company.name}</span>, 
+						company.segment, 
+						company.region, 
+						company.industry
+					]}
 				/>
 			))}
 		</div>
 		<Outlet />
 		</Fragment>
 	);
-}
+};
+
+
+async function editCompanyName (company, setCompanies) {
+	//Get the desired new name from the user
+	let newName = prompt('Renaming ' + company.name + '', company.name);
+	if (newName != null) {
+		const requestOptions = {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify({newName: newName})
+		};
+		const response = fetch('/companies/rename/' + company.id, requestOptions);
+		response.then(data => {
+			//successfully updated on the server, let's pull those changes here
+			getCompanies(setCompanies);
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+		});
+	}
+};
+
+async function getCompanies(setCompanies) {
+	const response = await fetch('/companies');
+	const { message, data } = await response.json();
+	if (message === 'success') {
+		setCompanies(data);
+	}
+};
+
 
 export default Companies;
